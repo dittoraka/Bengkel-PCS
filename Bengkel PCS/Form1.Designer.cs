@@ -28,24 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.menuStrip2 = new System.Windows.Forms.MenuStrip();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.cASHIERToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.iNVENTORYToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aDMINToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuStrip2.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // menuStrip2
+            // menuStrip1
             // 
-            this.menuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.cASHIERToolStripMenuItem,
             this.iNVENTORYToolStripMenuItem,
             this.aDMINToolStripMenuItem});
-            this.menuStrip2.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip2.Name = "menuStrip2";
-            this.menuStrip2.Size = new System.Drawing.Size(953, 24);
-            this.menuStrip2.TabIndex = 1;
-            this.menuStrip2.Text = "menuStrip2";
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(953, 24);
+            this.menuStrip1.TabIndex = 1;
+            this.menuStrip1.Text = "menuStrip2";
             // 
             // cASHIERToolStripMenuItem
             // 
@@ -70,19 +70,19 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(953, 504);
-            this.Controls.Add(this.menuStrip2);
+            this.Controls.Add(this.menuStrip1);
             this.IsMdiContainer = true;
             this.Name = "Form1";
             this.Text = "Form1";
-            this.menuStrip2.ResumeLayout(false);
-            this.menuStrip2.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.MenuStrip menuStrip2;
+        private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem cASHIERToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem iNVENTORYToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aDMINToolStripMenuItem;
