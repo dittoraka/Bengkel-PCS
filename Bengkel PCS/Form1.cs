@@ -16,5 +16,13 @@ namespace Bengkel_PCS
         {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            panel1.Enabled = false;
+            cASHIERToolStripMenuItem.Enabled = true;
+            iNVENTORYToolStripMenuItem.Enabled = true;
+            aDMINToolStripMenuItem.Enabled = true;
+        }
     }
 }
