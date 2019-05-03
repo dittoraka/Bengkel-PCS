@@ -48,5 +48,26 @@ namespace Bengkel_PCS
                 aDMINToolStripMenuItem.Enabled = false;
             }
         }
+
+        private void cASHIERToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Cashier fm = new Cashier();
+            fm.MdiParent = this;
+            fm.Show();
+        }
+
+        private void iNVENTORYToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Inventory fm = new Inventory();
+            fm.MdiParent = this;
+            fm.Show();
+        }
+
+        private void aDMINToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Admin fm = new Admin();
+            fm.MdiParent = this;
+            fm.Show();
+        }
     }
 }
