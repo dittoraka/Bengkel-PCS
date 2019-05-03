@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Oracle.DataAccess.Client;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,17 +13,40 @@ namespace Bengkel_PCS
 {
     public partial class Form1 : Form
     {
+        public OracleConnection conn = new OracleConnection();
         public Form1()
         {
+            
+            conn.ConnectionString = "Data Source=orcl;User ID=system;Password=Raka230499;";
+            
             InitializeComponent();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            panel1.Enabled = false;
-            cASHIERToolStripMenuItem.Enabled = true;
-            iNVENTORYToolStripMenuItem.Enabled = true;
-            aDMINToolStripMenuItem.Enabled = true;
+            string nama;
+            string jabatan = null;
+            conn.Open();
+            OracleCommand cmd;
+            cmd = new OracleCommand("select jabatan as jabatan from karyawan where id_karyawan = '"+textBox2.Text+"' and nama_karyawan = '"+textBox1.Text+"'", conn);
+            OracleDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                jabatan = reader["jabatan"] + "";
+            }
+            conn.Close();
+            panel1.Visible = false;
+            if (jabatan.Equals("KASIR"))
+            {
+                cASHIERToolStripMenuItem.Enabled = true;
+                iNVENTORYToolStripMenuItem.Enabled = false;
+                aDMINToolStripMenuItem.Enabled = false;
+            }
+            else if (jabatan.Equals("MONTIR")) {
+                cASHIERToolStripMenuItem.Enabled = false;
+                iNVENTORYToolStripMenuItem.Enabled = true;
+                aDMINToolStripMenuItem.Enabled = false;
+            }
         }
     }
 }
