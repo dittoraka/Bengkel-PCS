@@ -31,8 +31,8 @@ create table barang
 	nama_barang varchar2(20),
 	harga_asli number(7),
 	harga_customer number (7),
-	harga_bengkel (7),
-	stock (3)
+	harga_bengkel number(7),
+	stock number(3)
 );
 
 create table alat
@@ -53,25 +53,28 @@ create table customer
 
 create table bengkelCust
 (
-	id_customer varchar2(6) foreign key fk_id_bengkel references customer(id_customer),
+	id_customer varchar2(6) ,
 	nama_bengkel varchar2(20),
-	alamat varchar2(100)
+	alamat varchar2(100),
+	foreign key (id_customer) references customer(id_customer)
 );
 
 create table h_transaksi
 (
 	id_transaksi varchar2(8) primary key,
-	id_customer varchar2(6) foreign key fk_id_cust references customer(id_customer),
+	id_customer varchar2(6),
 	total number,
-	tgl_transaksi date
+	tgl_transaksi date,
+	foreign key (id_customer) references customer(id_customer)
 );
 
 create table d_transaksi
 (
-	id_transaksi varchar2(10) foreign key fk_id_transaksi references h_transaksi(id_transaksi),
+	id_transaksi varchar2(8),
 	id_serba varchar2(6),
 	jumlah number,
-	subtotal number
+	subtotal number,
+	foreign key (id_transaksi) references h_transaksi(id_transaksi)
 );
 
 --spesialis: mesin, cuci, ban, penjualan, management
