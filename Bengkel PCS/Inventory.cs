@@ -20,7 +20,7 @@ namespace Bengkel_PCS
             InitializeComponent();
             fm = new Form1();
         }
-
+        //ohai
         public void tampil()
         {
             fm.conn.Open();
