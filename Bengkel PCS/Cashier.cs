@@ -33,7 +33,7 @@ namespace Bengkel_PCS
             comboBox2.DisplayMember = "nama_customer";
             comboBox2.ValueMember = "id_customer";
 
-            daa = new OracleDataAdapter("SELECT id_barang,nama_barang FROM barang ORDER BY 1", fm.conn);
+            daa = new OracleDataAdapter("SELECT nama_barang,harga_asli FROM barang ORDER BY 1", fm.conn);
             dta = new DataSet();
             daa.Fill(dta);
 
@@ -50,6 +50,65 @@ namespace Bengkel_PCS
         private void button2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            OracleCommand cmd = new OracleCommand("select id_barang as gen from barang where nama_barang = '" + comboBox1.Text + "'", fm.conn);
+            OracleDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                textBox2.Text = reader["gen"] + "";
+            }
+        }
+        int total = 0;
+        private void button3_Click(object sender, EventArgs e)
+        {
+            DateTime date = DateTime.Now;
+            DataGridViewRow row = new DataGridViewRow();
+            row.CreateCells(dataGridView1);  // this line was missing
+            OracleCommand cmd = new OracleCommand("select id_barang as gen from barang where nama_barang = '" + comboBox1.Text + "'", fm.conn);
+            OracleDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                row.Cells[0].Value = reader["gen"] + "";
+            }
+            row.Cells[1].Value = date;
+            row.Cells[2].Value = comboBox1.Text;
+            row.Cells[3].Value = comboBox2.SelectedValue.ToString();
+            row.Cells[4].Value = textBox3.Text;
+            row.Cells[5].Value = comboBox1.SelectedValue.ToString();
+            row.Cells[6].Value = Int32.Parse(comboBox1.SelectedValue.ToString()) * Int32.Parse(textBox3.Text);
+            total += Int32.Parse(comboBox1.SelectedValue.ToString()) * Int32.Parse(textBox3.Text);
+
+            dataGridView1.Rows.Add(row);
+
+            label1.Text = "Rp. " + total.ToString();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            string nbarang = textBox4.Text;
+            string stok = "";
+            OracleCommand cmd = new OracleCommand("select stock as gen from barang where nama_barang = '" + nbarang + "'", fm.conn);
+            OracleDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                stok = reader["gen"] + "";
+            }
+            MessageBox.Show("Nama Barang : "+nbarang+"\n Stock : "+stok);
+        }
+        int idx;
+        private void button5_Click(object sender, EventArgs e)
+        {
+            total -= Int32.Parse(dataGridView1.Rows[idx].Cells[6].Value.ToString());
+            label7.Text = "Rp. " + total.ToString();
+            dataGridView1.Rows.RemoveAt(idx);
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            idx = e.RowIndex;
         }
     }
 }
