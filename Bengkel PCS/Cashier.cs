@@ -9,10 +9,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace Bengkel_PCS
 {
+
     public partial class Cashier : Form
     {
+        public List<Pembelian> blist = new List<Pembelian>();
         public Cashier()
         {
             InitializeComponent();
@@ -24,17 +27,12 @@ namespace Bengkel_PCS
 
         private void Cashier_Load(object sender, EventArgs e)
         {
-            OracleDataAdapter daa = new OracleDataAdapter();
-            daa = new OracleDataAdapter("SELECT id_customer,nama_customer FROM customer ORDER BY 1", fm.conn);
+            loadBarang("harga_customer");
+        }
+
+        void loadBarang(string a) {
+            OracleDataAdapter daa = new OracleDataAdapter("SELECT nama_barang,"+a+" FROM barang ORDER BY 1", fm.conn);
             DataSet dta = new DataSet();
-            daa.Fill(dta);
-
-            comboBox2.DataSource = dta.Tables[0];
-            comboBox2.DisplayMember = "nama_customer";
-            comboBox2.ValueMember = "id_customer";
-
-            daa = new OracleDataAdapter("SELECT nama_barang,harga_asli FROM barang ORDER BY 1", fm.conn);
-            dta = new DataSet();
             daa.Fill(dta);
 
             comboBox1.DataSource = dta.Tables[0];
@@ -44,7 +42,57 @@ namespace Bengkel_PCS
 
         private void button1_Click(object sender, EventArgs e)
         {
+            string id = "";
+            try
+            {
+                fm.conn.Open();
+                OracleCommand cmd = new OracleCommand("select count(*) from h_transaksi", fm.conn);
+                string jml = cmd.ExecuteScalar().ToString();
 
+                id = "TR" + jml.PadLeft(6, '0');
+                string date = DateTime.Now.ToString("yyyy-MM-dd");
+                int hg = total;
+                cmd = new OracleCommand("insert into h_transaksi values('" + id + "','" + hg + "',to_date('" + date + "','yyyy-MM-dd'))", fm.conn);
+                cmd.ExecuteNonQuery();
+                fm.conn.Close();
+                //MessageBox.Show("Sukses Memasukkan Data transaksi.");
+            }
+            catch (Exception)
+            {
+                //MessageBox.Show("Gagal Memasukkan Data transaksi.");
+            }
+
+            try
+            {
+                foreach (Pembelian s in blist)
+                {
+                    string a = "999";
+                    fm.conn.Open();
+                    OracleCommand cmd = new OracleCommand("insert into d_transaksi values('" + id + "','" + s.Idbarang + "','" + s.Jumlah + "','" + (s.Harga - (s.Hbeli * s.Jumlah)) + "')", fm.conn);
+                    cmd.ExecuteNonQuery();
+                    fm.conn.Close();
+
+                    fm.conn.Open();
+                    cmd = new OracleCommand("select stock as gen from barang where id_barang = '" + s.Idbarang + "'", fm.conn);
+                    OracleDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read()) { a = reader["gen"] + ""; }
+                    fm.conn.Close();
+
+                    int suk = Convert.ToInt32(a) - s.Jumlah;
+                    fm.conn.Open();
+                    cmd = new OracleCommand("update barang set stock = '" + suk + "' where id_barang = '" + s.Idbarang + "'", fm.conn);
+                    cmd.ExecuteNonQuery();
+                    fm.conn.Close();
+                }
+                MessageBox.Show("Sukses Memasukkan Data Transaksi.");
+                blist.Clear();
+                dataGridView1.Rows.Clear();
+                dataGridView1.Refresh();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Gagal Memasukkan Data transaksi.");
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -64,15 +112,20 @@ namespace Bengkel_PCS
         int total = 0;
         private void button3_Click(object sender, EventArgs e)
         {
+            string id = "";
+            string hbeli = "";
             DateTime date = DateTime.Now;
             DataGridViewRow row = new DataGridViewRow();
             row.CreateCells(dataGridView1);  // this line was missing
-            OracleCommand cmd = new OracleCommand("select id_barang as gen from barang where nama_barang = '" + comboBox1.Text + "'", fm.conn);
+            OracleCommand cmd = new OracleCommand("select id_barang as gen, harga_asli as gen1 from barang where nama_barang = '" + comboBox1.Text + "'", fm.conn);
             OracleDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
             {
-                row.Cells[0].Value = reader["gen"] + "";
+                id = reader["gen"] + "";
+                hbeli = reader["gen1"] + "";
             }
+
+            row.Cells[0].Value = id;
             row.Cells[1].Value = date;
             row.Cells[2].Value = comboBox1.Text;
             row.Cells[3].Value = comboBox2.SelectedValue.ToString();
@@ -82,6 +135,7 @@ namespace Bengkel_PCS
             total += Int32.Parse(comboBox1.SelectedValue.ToString()) * Int32.Parse(textBox3.Text);
 
             dataGridView1.Rows.Add(row);
+            blist.Add(new Pembelian(id,comboBox1.Text, Int32.Parse(comboBox1.SelectedValue.ToString()) * Int32.Parse(textBox3.Text), Int32.Parse(textBox3.Text),Int32.Parse(hbeli)));
 
             label1.Text = "Rp. " + total.ToString();
         }
@@ -109,6 +163,17 @@ namespace Bengkel_PCS
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             idx = e.RowIndex;
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox2.Text == "Ya")
+            {
+                loadBarang("harga_bengkel");
+            }
+            else {
+                loadBarang("harga_customer");
+            }
         }
     }
 }

@@ -62,7 +62,6 @@ create table bengkelCust
 create table h_transaksi
 (
 	id_transaksi varchar2(8) primary key,
-	id_customer varchar2(6),
 	total number,
 	tgl_transaksi date,
 	foreign key (id_customer) references customer(id_customer)

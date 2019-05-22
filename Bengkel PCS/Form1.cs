@@ -13,11 +13,11 @@ namespace Bengkel_PCS
 {
     public partial class Form1 : Form
     {
+        
         public OracleConnection conn = new OracleConnection();
         public Form1()
         {
-            
-            conn.ConnectionString = "Data Source=orcl;User ID=system;Password=Raka230499;";
+            conn.ConnectionString = "Data Source=orcl;User ID=n217116576;Password=217116576;";
             
             InitializeComponent();
         }
