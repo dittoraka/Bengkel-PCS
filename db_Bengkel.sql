@@ -136,17 +136,15 @@ insert into service values('SER006','GANTI OLI',130000,1,0);
 insert into service values('SER007','CAT MOBIL',400000,2,30);
 insert into service values('SER008','PASANG AKSESORIS',200000,1,10);
 
-insert into barang values('BAR001','BARANG1',1000,1000,1000,100); --ganti nama harga stock
-insert into barang values('BAR002','BARANG2',1000,1000,1000,100);
-insert into barang values('BAR003','BARANG3',1000,1000,1000,100);
-insert into barang values('BAR004','BARANG4',1000,1000,1000,100);
-insert into barang values('BAR005','BARANG5',1000,1000,1000,100);
-insert into barang values('BAR006','BARANG6',1000,1000,1000,100);
-insert into barang values('BAR007','BARANG7',1000,1000,1000,100);
-insert into barang values('BAR008','BARANG8',1000,1000,1000,100);
-insert into barang values('BAR009','BARANG9',1000,1000,1000,100);
-insert into barang values('BAR0010','BARANG10',1000,1000,1000,100);
-insert into barang values('BAR0011','BARANG11',1000,1000,1000,100);
+insert into barang values('BAR001','Ban Lightyear',50000,55000,45000,100);
+insert into barang values('BAR002','Ban Bridge',55000,60500,49500,100);
+insert into barang values('BAR003','Oli TOP 1',35000,38500,31500,100);
+insert into barang values('BAR004','Oli Yamalube',40000,44000,36000,100);
+insert into barang values('BAR005','Oli Repsol Matic',38000,41800,34200,100);
+insert into barang values('BAR006','Ban Michelin',52000,57200,47800,100);
+insert into barang values('BAR007','Ban FDR',43000,47300,38700,100);
+insert into barang values('BAR008','Busi Motor',15000,16500,13500,100);
+insert into barang values('BAR009','Rantai Motor',60000,66000,54000,100);
 
 insert into h_transaksi values('TRANS001','CUST001',50000000,to_date('10-07-2017','DD-MM-YYYY')); --ganti semua hehe
 insert into h_transaksi values('TRANS002','CUST002',70000000,to_date('09-08-2016','DD-MM-YYYY'));
