@@ -2,14 +2,16 @@ drop table karyawan cascade constraints purge;
 drop table service cascade constraints purge;
 drop table barang cascade constraints purge;
 drop table alat cascade constraints purge;
+drop table bengkelCust cascade constraints purge;
 drop table customer cascade constraints purge;
 drop table h_transaksi cascade constraints purge;
 drop table d_transaksi cascade constraints purge;
 
 create table karyawan
 (
-	id_karyawan varchar2(6) primary key,
+	id_karyawan varchar2(8) primary key,
 	nama_karyawan varchar2(100),
+	password_karyawan varchar2(20),
 	dob_karyawan date,
 	spesialis varchar2(15),
 	tgl_join date,
@@ -18,7 +20,7 @@ create table karyawan
 
 create table service
 (
-	id_service varchar2(6) primary key,
+	id_service varchar2(8) primary key,
 	nama_service varchar2(30),
 	harga_service number (7),
 	durasi_service_jam number (2),
@@ -37,7 +39,7 @@ create table barang
 
 create table alat
 (
-	id_alat varchar2(6) primary key,
+	id_alat varchar2(8) primary key,
 	nama_alat varchar2(20),
 	banyak_alat number (3),
 	kondisi varchar2(1)
@@ -45,7 +47,7 @@ create table alat
 
 create table customer
 (
-	id_customer varchar2(6) primary key,
+	id_customer varchar2(8) primary key,
 	nama_customer varchar2(20),
 	langganan number,
 	role_customer varchar2(1)
@@ -53,7 +55,7 @@ create table customer
 
 create table bengkelCust
 (
-	id_customer varchar2(6) ,
+	id_customer varchar2(8) ,
 	nama_bengkel varchar2(20),
 	alamat varchar2(100),
 	foreign key (id_customer) references customer(id_customer)
@@ -62,6 +64,7 @@ create table bengkelCust
 create table h_transaksi
 (
 	id_transaksi varchar2(8) primary key,
+	id_customer varchar2(8),
 	total number,
 	tgl_transaksi date,
 	foreign key (id_customer) references customer(id_customer)
@@ -70,7 +73,7 @@ create table h_transaksi
 create table d_transaksi
 (
 	id_transaksi varchar2(8),
-	id_serba varchar2(6),
+	id_serba varchar2(8),
 	jumlah number,
 	subtotal number,
 	foreign key (id_transaksi) references h_transaksi(id_transaksi)
@@ -78,23 +81,23 @@ create table d_transaksi
 
 --spesialis: mesin, cuci, ban, penjualan, management
 
-insert into karyawan values('KAR001','Greg Abbot',to_date('14-12-1963','DD-MM-YYYY'),'MESIN', to_date('14-12-2017','DD-MM-YYYY'),'MONTIR'); --done
-insert into karyawan values('KAR002','Alex Ferguson',to_date('31-12-1941','DD-MM-YYYY'),'MESIN',to_date('14-12-2017','DD-MM-YYYY'),'MONTIR');
-insert into karyawan values('KAR003','Arsene Wenger',to_date('22-10-1949','DD-MM-YYYY'),'BAN',to_date('14-12-2017','DD-MM-YYYY'),'MONTIR');
-insert into karyawan values('KAR004','Josep Guardiola',to_date('18-01-1971','DD-MM-YYYY'),'CUCI',to_date('14-12-2017','DD-MM-YYYY'),'MONTIR');
-insert into karyawan values('KAR005','Maurizio Sarri',to_date('10-01-1959','DD-MM-YYYY'),'CUCI',to_date('14-12-2017','DD-MM-YYYY'),'MONTIR');
-insert into karyawan values('KAR006','Jurgen Klopp',to_date('16-06-1967','DD-MM-YYYY'),'MESIN',to_date('14-12-2017','DD-MM-YYYY'),'MONTIR');
-insert into karyawan values('KAR007','Mauricio Pochettino',to_date('02-03-1972','DD-MM-YYYY'),'PENJUALAN',to_date('14-12-2017','DD-MM-YYYY'),'KASIR');
-insert into karyawan values('KAR008','Ernesto Valverde',to_date('09-02-1964','DD-MM-YYYY'),'MANAGEMENT',to_date('14-12-2017','DD-MM-YYYY'),'MANAGER');
-insert into karyawan values('KAR009','Santiago Solari',to_date('08-10-1976','DD-MM-YYYY'),'MANAGEMENT',to_date('14-12-2017','DD-MM-YYYY'),'MANAGER');
-insert into karyawan values('KAR010','Diego Simeone',to_date('28-04-1970','DD-MM-YYYY'),'BAN',to_date('14-12-2017','DD-MM-YYYY'),'MONTIR');
-insert into karyawan values('KAR011','Pablo Machin',to_date('07-04-1975','DD-MM-YYYY'),'CUCI',to_date('14-12-2017','DD-MM-YYYY'),'MONTIR');
-insert into karyawan values('KAR012','Marcelino Toral',to_date('14-08-1965','DD-MM-YYYY'),'CUCI',to_date('14-12-2017','DD-MM-YYYY'),'MONTIR');
-insert into karyawan values('KAR013','Massimiliano Allegri',to_date('11-08-1967','DD-MM-YYYY'),'CUCI',to_date('14-12-2017','DD-MM-YYYY'),'MONTIR');
-insert into karyawan values('KAR014','Gennaro Gattuso',to_date('09-01-1978','DD-MM-YYYY'),'PENJUALAN',to_date('14-12-2017','DD-MM-YYYY'),'MARKETING');
-insert into karyawan values('KAR015','Luciano Spalletti',to_date('03-07-1959','DD-MM-YYYY'),'PENJUALAN',to_date('14-12-2017','DD-MM-YYYY'),'MARKETING');
-insert into karyawan values('KAR016','Carlo Ancelotti',to_date('10-06-1959','DD-MM-YYYY'),'MESIN',to_date('14-12-2017','DD-MM-YYYY'),'MONTIR');
-insert into karyawan values('KAR017','Eusebio Di Francesco',to_date('08-09-1969','DD-MM-YYYY'),'PENJUALAN',to_date('14-12-2017','DD-MM-YYYY'),'KASIR');
+insert into karyawan values('KAR001','Greg Abbot',123,to_date('14-12-1963','DD-MM-YYYY'),'MESIN', to_date('14-12-2017','DD-MM-YYYY'),'MONTIR'); --done
+insert into karyawan values('KAR002','Alex Ferguson',123,to_date('31-12-1941','DD-MM-YYYY'),'MESIN',to_date('14-12-2017','DD-MM-YYYY'),'MONTIR');
+insert into karyawan values('KAR003','Arsene Wenger',123,to_date('22-10-1949','DD-MM-YYYY'),'BAN',to_date('14-12-2017','DD-MM-YYYY'),'MONTIR');
+insert into karyawan values('KAR004','Josep Guardiola',123,to_date('18-01-1971','DD-MM-YYYY'),'CUCI',to_date('14-12-2017','DD-MM-YYYY'),'MONTIR');
+insert into karyawan values('KAR005','Maurizio Sarri',123,to_date('10-01-1959','DD-MM-YYYY'),'CUCI',to_date('14-12-2017','DD-MM-YYYY'),'MONTIR');
+insert into karyawan values('KAR006','Jurgen Klopp',123,to_date('16-06-1967','DD-MM-YYYY'),'MESIN',to_date('14-12-2017','DD-MM-YYYY'),'MONTIR');
+insert into karyawan values('KAR007','Mauricio Pochettino',123,to_date('02-03-1972','DD-MM-YYYY'),'PENJUALAN',to_date('14-12-2017','DD-MM-YYYY'),'KASIR');
+insert into karyawan values('KAR008','Ernesto Valverde',123,to_date('09-02-1964','DD-MM-YYYY'),'MANAGEMENT',to_date('14-12-2017','DD-MM-YYYY'),'MANAGER');
+insert into karyawan values('KAR009','Santiago Solari',123,to_date('08-10-1976','DD-MM-YYYY'),'MANAGEMENT',to_date('14-12-2017','DD-MM-YYYY'),'MANAGER');
+insert into karyawan values('KAR010','Diego Simeone',123,to_date('28-04-1970','DD-MM-YYYY'),'BAN',to_date('14-12-2017','DD-MM-YYYY'),'MONTIR');
+insert into karyawan values('KAR011','Pablo Machin',123,to_date('07-04-1975','DD-MM-YYYY'),'CUCI',to_date('14-12-2017','DD-MM-YYYY'),'MONTIR');
+insert into karyawan values('KAR012','Marcelino Toral',123,to_date('14-08-1965','DD-MM-YYYY'),'CUCI',to_date('14-12-2017','DD-MM-YYYY'),'MONTIR');
+insert into karyawan values('KAR013','Massimiliano Allegri',123,to_date('11-08-1967','DD-MM-YYYY'),'CUCI',to_date('14-12-2017','DD-MM-YYYY'),'MONTIR');
+insert into karyawan values('KAR014','Gennaro Gattuso',123,to_date('09-01-1978','DD-MM-YYYY'),'PENJUALAN',to_date('14-12-2017','DD-MM-YYYY'),'MARKETING');
+insert into karyawan values('KAR015','Luciano Spalletti',123,to_date('03-07-1959','DD-MM-YYYY'),'PENJUALAN',to_date('14-12-2017','DD-MM-YYYY'),'MARKETING');
+insert into karyawan values('KAR016','Carlo Ancelotti',123,to_date('10-06-1959','DD-MM-YYYY'),'MESIN',to_date('14-12-2017','DD-MM-YYYY'),'MONTIR');
+insert into karyawan values('KAR017','Eusebio Di Francesco',123,to_date('08-09-1969','DD-MM-YYYY'),'PENJUALAN',to_date('14-12-2017','DD-MM-YYYY'),'KASIR');
 
 insert into bengkelCust values('CUST001','ABADI','Petemon no 61');
 insert into bengkelCust values('CUST004','JAYA','Dharmahusada no 12');

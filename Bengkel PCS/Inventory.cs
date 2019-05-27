@@ -36,19 +36,18 @@ namespace Bengkel_PCS
         {
             baris = e.RowIndex;
             textBox1.Text = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
-            textBox2.Text = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
-            textBox3.Text = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
-            numericUpDown1.Value = Int32.Parse(dataGridView1.Rows[e.RowIndex].Cells[5].Value.ToString());
+            NamaBar.Text = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
+            HargaAs.Text = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
+            HargaBeng.Text = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
+            HargaCust.Text = dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString();
+            Stock.Value = Int32.Parse(dataGridView1.Rows[e.RowIndex].Cells[5].Value.ToString());
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            int harga = Int32.Parse(textBox3.Text) * 10 / 100;
-            int cust = Int32.Parse(textBox3.Text) + harga;
-            int bengkel = Int32.Parse(textBox3.Text) - harga;
 
             fm.conn.Open();
-            OracleCommand cmd = new OracleCommand("insert into barang values('" + textBox1.Text + "','" + textBox2.Text + "','" + textBox3.Text + "','" + cust.ToString() + "','" + bengkel.ToString() + "','" + numericUpDown1.Value.ToString() + "')", fm.conn);
+            OracleCommand cmd = new OracleCommand("insert into barang values('','" + NamaBar.Text + "','" + HargaAs.Text + "','" + HargaBeng.Text + "','" + HargaCust.Text + "','" + Stock.Value.ToString() + "')", fm.conn);
             cmd.ExecuteNonQuery();
             fm.conn.Close();
             tampil();
@@ -56,12 +55,9 @@ namespace Bengkel_PCS
 
         private void button2_Click(object sender, EventArgs e)
         {
-            int harga = Int32.Parse(textBox3.Text) * 10 / 100;
-            int cust = Int32.Parse(textBox3.Text) + harga;
-            int bengkel = Int32.Parse(textBox3.Text) - harga;
 
             fm.conn.Open();
-            OracleCommand cmd = new OracleCommand("update barang set nama_barang = '" + textBox2.Text + "', harga_asli ='" + textBox3.Text + "', harga_customer='" + cust.ToString() + "', harga_bengkel='" + bengkel.ToString() + "', stock='" + numericUpDown1.Value.ToString() + "' where id_barang = '" + textBox1.Text + "'", fm.conn);
+            OracleCommand cmd = new OracleCommand("update barang set nama_barang = '" + NamaBar.Text + "', harga_asli ='" + HargaAs.Text + "', harga_customer='" +HargaCust.Text + "', harga_bengkel='" + HargaBeng.Text + "', stock='" + Stock.Value.ToString() + "' where id_barang = '" + textBox1.Text + "'", fm.conn);
             cmd.ExecuteNonQuery();
             fm.conn.Close();
             tampil();
@@ -69,12 +65,9 @@ namespace Bengkel_PCS
 
         private void button3_Click(object sender, EventArgs e)
         {
-            int harga = Int32.Parse(textBox3.Text) * 10 / 100;
-            int cust = Int32.Parse(textBox3.Text) + harga;
-            int bengkel = Int32.Parse(textBox3.Text) - harga;
 
             fm.conn.Open();
-            OracleCommand cmd = new OracleCommand("update barang set nama_barang = '" + textBox2.Text + "', harga_asli ='" + textBox3.Text + "', harga_customer='" + cust.ToString() + "', harga_bengkel='" + bengkel.ToString() + "', stock='" + numericUpDown1.Value.ToString() + "' where id_barang = '" + textBox1.Text + "'", fm.conn);
+            OracleCommand cmd = new OracleCommand("delete from barang where id_barang = '"+textBox1.Text+"'", fm.conn);
             cmd.ExecuteNonQuery();
             fm.conn.Close();
             tampil();

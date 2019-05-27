@@ -17,7 +17,7 @@ namespace Bengkel_PCS
         public OracleConnection conn = new OracleConnection();
         public Form1()
         {
-            conn.ConnectionString = "Data Source=orcl;User ID=system;Password=123;";
+            conn.ConnectionString = "Data Source=orcl;User ID=project;Password=11;";
             
             InitializeComponent();
         }
@@ -26,27 +26,42 @@ namespace Bengkel_PCS
         {
             string nama;
             string jabatan = null;
-            conn.Open();
-            OracleCommand cmd;
-            cmd = new OracleCommand("select jabatan as jabatan from karyawan where id_karyawan = '"+textBox2.Text+"' and nama_karyawan = '"+textBox1.Text+"'", conn);
-            OracleDataReader reader = cmd.ExecuteReader();
-            while (reader.Read())
+            try
             {
-                jabatan = reader["jabatan"] + "";
+                conn.Open();
+                OracleCommand cmd;
+                cmd = new OracleCommand("select jabatan as jabatan from karyawan where id_karyawan = '" + textBox1.Text.ToUpper() + "' and password_karyawan = '" + textBox2.Text + "'", conn);
+                OracleDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    jabatan = reader["jabatan"] + "";
+                }
+                conn.Close();
+                panel1.Visible = false;
+                if (jabatan.Equals("KASIR"))
+                {
+                    cASHIERToolStripMenuItem.Enabled = true;
+                    iNVENTORYToolStripMenuItem.Enabled = false;
+                    aDMINToolStripMenuItem.Enabled = false;
+                }
+                else if (jabatan.Equals("GUDANG"))
+                {
+                    cASHIERToolStripMenuItem.Enabled = false;
+                    iNVENTORYToolStripMenuItem.Enabled = true;
+                    aDMINToolStripMenuItem.Enabled = false;
+                }
+                else if (jabatan.Equals("MANAGER"))
+                {
+                    cASHIERToolStripMenuItem.Enabled = true;
+                    iNVENTORYToolStripMenuItem.Enabled = true;
+                    aDMINToolStripMenuItem.Enabled = true;
+                }
             }
-            conn.Close();
-            panel1.Visible = false;
-            if (jabatan.Equals("KASIR"))
+            catch (Exception)
             {
-                cASHIERToolStripMenuItem.Enabled = true;
-                iNVENTORYToolStripMenuItem.Enabled = false;
-                aDMINToolStripMenuItem.Enabled = false;
+
             }
-            else if (jabatan.Equals("MONTIR")) {
-                cASHIERToolStripMenuItem.Enabled = false;
-                iNVENTORYToolStripMenuItem.Enabled = true;
-                aDMINToolStripMenuItem.Enabled = false;
-            }
+           
         }
 
         private void cASHIERToolStripMenuItem_Click(object sender, EventArgs e)
@@ -68,6 +83,11 @@ namespace Bengkel_PCS
             Admin fm = new Admin();
             fm.MdiParent = this;
             fm.Show();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
