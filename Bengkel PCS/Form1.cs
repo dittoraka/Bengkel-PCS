@@ -17,7 +17,7 @@ namespace Bengkel_PCS
         public OracleConnection conn = new OracleConnection();
         public Form1()
         {
-            conn.ConnectionString = "Data Source=orcl;User ID=n217116576;Password=217116576;";
+            conn.ConnectionString = "Data Source=orcl;User ID=system;Password=123;";
             
             InitializeComponent();
         }

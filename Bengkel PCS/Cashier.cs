@@ -31,13 +31,15 @@ namespace Bengkel_PCS
         }
 
         void loadBarang(string a) {
-            OracleDataAdapter daa = new OracleDataAdapter("SELECT nama_barang,"+a+" FROM barang ORDER BY 1", fm.conn);
+            fm.conn.Open();
+            OracleDataAdapter daa = new OracleDataAdapter("SELECT nama_barang,'"+a+"' FROM barang ORDER BY 1", fm.conn);
             DataSet dta = new DataSet();
             daa.Fill(dta);
 
             comboBox1.DataSource = dta.Tables[0];
             comboBox1.DisplayMember = "nama_barang";
-            comboBox1.ValueMember = "id_barang";
+            comboBox1.ValueMember = "'"+a+"'";
+            fm.conn.Close();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -102,12 +104,14 @@ namespace Bengkel_PCS
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            OracleCommand cmd = new OracleCommand("select id_barang as gen from barang where nama_barang = '" + comboBox1.Text + "'", fm.conn);
-            OracleDataReader reader = cmd.ExecuteReader();
-            while (reader.Read())
-            {
-                textBox2.Text = reader["gen"] + "";
-            }
+            //fm.conn.Open();
+            //OracleCommand cmd = new OracleCommand("select id_barang as gen from barang where nama_barang = '" + comboBox1.Text + "'", fm.conn);
+            //OracleDataReader reader = cmd.ExecuteReader();
+            //while (reader.Read())
+            //{
+            //    textBox2.Text = reader["gen"] + "";
+            //}
+            //fm.conn.Close();
         }
         int total = 0;
         private void button3_Click(object sender, EventArgs e)
@@ -117,6 +121,7 @@ namespace Bengkel_PCS
             DateTime date = DateTime.Now;
             DataGridViewRow row = new DataGridViewRow();
             row.CreateCells(dataGridView1);  // this line was missing
+            fm.conn.Open();
             OracleCommand cmd = new OracleCommand("select id_barang as gen, harga_asli as gen1 from barang where nama_barang = '" + comboBox1.Text + "'", fm.conn);
             OracleDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
@@ -124,15 +129,17 @@ namespace Bengkel_PCS
                 id = reader["gen"] + "";
                 hbeli = reader["gen1"] + "";
             }
+            fm.conn.Close();
+            int a = Int32.Parse(comboBox1.SelectedValue.ToString());
+            int b = Int32.Parse(textBox3.Text);
 
             row.Cells[0].Value = id;
             row.Cells[1].Value = date;
             row.Cells[2].Value = comboBox1.Text;
-            row.Cells[3].Value = comboBox2.SelectedValue.ToString();
-            row.Cells[4].Value = textBox3.Text;
-            row.Cells[5].Value = comboBox1.SelectedValue.ToString();
-            row.Cells[6].Value = Int32.Parse(comboBox1.SelectedValue.ToString()) * Int32.Parse(textBox3.Text);
-            total += Int32.Parse(comboBox1.SelectedValue.ToString()) * Int32.Parse(textBox3.Text);
+            row.Cells[3].Value = textBox3.Text;
+            row.Cells[4].Value = comboBox1.SelectedValue.ToString();
+            row.Cells[5].Value = a * b;
+            total += a * b;
 
             dataGridView1.Rows.Add(row);
             blist.Add(new Pembelian(id,comboBox1.Text, Int32.Parse(comboBox1.SelectedValue.ToString()) * Int32.Parse(textBox3.Text), Int32.Parse(textBox3.Text),Int32.Parse(hbeli)));
@@ -144,12 +151,14 @@ namespace Bengkel_PCS
         {
             string nbarang = textBox4.Text;
             string stok = "";
+            fm.conn.Open();
             OracleCommand cmd = new OracleCommand("select stock as gen from barang where nama_barang = '" + nbarang + "'", fm.conn);
             OracleDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
             {
                 stok = reader["gen"] + "";
             }
+            fm.conn.Close();
             MessageBox.Show("Nama Barang : "+nbarang+"\n Stock : "+stok);
         }
         int idx;
