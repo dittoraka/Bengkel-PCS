@@ -244,7 +244,7 @@ namespace Bengkel_PCS
             OracleCommand cmd = new OracleCommand("insert into alat values('','" + AlatNama.Text + "','" + AlatJuml.Value + "','B')", fm.conn);
             cmd.ExecuteNonQuery();
             fm.conn.Close();
-            tampil();
+            tampil2();
             MessageBox.Show("Tambah Alat Sukses");
         }
 
@@ -254,7 +254,7 @@ namespace Bengkel_PCS
             OracleCommand cmd = new OracleCommand("update alat set nama_alat = '" + AlatNama.Text + "', banyak_alat ='" + AlatJuml.Value + "' where id_alat = '" + AlatID.Text + "'", fm.conn);
             cmd.ExecuteNonQuery();
             fm.conn.Close();
-            tampil();
+            tampil2();
         }
 
         private void button7_Click(object sender, EventArgs e)
@@ -263,7 +263,7 @@ namespace Bengkel_PCS
             OracleCommand cmd = new OracleCommand("delete from alat where id_alat = '" + AlatID.Text + "'", fm.conn);
             cmd.ExecuteNonQuery();
             fm.conn.Close();
-            tampil();
+            tampil2();
         }
     }
 }
