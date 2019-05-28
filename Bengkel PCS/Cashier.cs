@@ -16,6 +16,8 @@ namespace Bengkel_PCS
     public partial class Cashier : Form
     {
         public List<Pembelian> blist = new List<Pembelian>();
+        List<string> nbarang = new List<string>();
+        List<string> stok = new List<string>();
         public Cashier()
         {
             InitializeComponent();
@@ -32,13 +34,13 @@ namespace Bengkel_PCS
 
         void loadBarang(string a) {
             fm.conn.Open();
-            OracleDataAdapter daa = new OracleDataAdapter("SELECT nama_barang,'"+a+"' FROM barang ORDER BY 1", fm.conn);
+            OracleDataAdapter daa = new OracleDataAdapter("SELECT nama_barang,"+a+" FROM barang ORDER BY 1", fm.conn);
             DataSet dta = new DataSet();
             daa.Fill(dta);
 
             comboBox1.DataSource = dta.Tables[0];
             comboBox1.DisplayMember = "nama_barang";
-            comboBox1.ValueMember = "'"+a+"'";
+            comboBox1.ValueMember = a;
             fm.conn.Close();
         }
 
@@ -104,14 +106,22 @@ namespace Bengkel_PCS
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //fm.conn.Open();
-            //OracleCommand cmd = new OracleCommand("select id_barang as gen from barang where nama_barang = '" + comboBox1.Text + "'", fm.conn);
-            //OracleDataReader reader = cmd.ExecuteReader();
-            //while (reader.Read())
-            //{
-            //    textBox2.Text = reader["gen"] + "";
-            //}
-            //fm.conn.Close();
+            try
+            {
+                fm.conn.Open();
+                OracleCommand cmd = new OracleCommand("select id_barang as gen from barang where nama_barang = '" + comboBox1.Text + "'", fm.conn);
+                OracleDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    textBox2.Text = reader["gen"] + "";
+                }
+                fm.conn.Close();
+            }
+            catch (Exception)
+            {
+
+            }
+            
         }
         int total = 0;
         private void button3_Click(object sender, EventArgs e)
@@ -149,17 +159,22 @@ namespace Bengkel_PCS
 
         private void button4_Click(object sender, EventArgs e)
         {
-            string nbarang = textBox4.Text;
-            string stok = "";
+            
             fm.conn.Open();
-            OracleCommand cmd = new OracleCommand("select stock as gen from barang where nama_barang = '" + nbarang + "'", fm.conn);
+            OracleCommand cmd = new OracleCommand("select stock as gen,nama_barang as nama from barang where nama_barang like '%" + textBox4.Text + "%'", fm.conn);
             OracleDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
             {
-                stok = reader["gen"] + "";
+                stok.Add(reader["gen"] + "");
+                nbarang.Add(reader["nama"] + "");
             }
             fm.conn.Close();
-            MessageBox.Show("Nama Barang : "+nbarang+"\n Stock : "+stok);
+            for (int i = 0; i < nbarang.Count; i++)
+            {
+                MessageBox.Show("Nama Barang : " + nbarang[i] + "\n Stock : " + stok[i]);
+            }
+            nbarang.Clear();
+            stok.Clear();
         }
         int idx;
         private void button5_Click(object sender, EventArgs e)

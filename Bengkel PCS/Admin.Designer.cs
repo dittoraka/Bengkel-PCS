@@ -39,6 +39,7 @@
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.tambahKaryawanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tambahAlatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.servisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.GantiKar = new System.Windows.Forms.GroupBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.button1 = new System.Windows.Forms.Button();
@@ -49,6 +50,12 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.GantiMana = new System.Windows.Forms.GroupBox();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.Ganti_CMPass = new System.Windows.Forms.TextBox();
+            this.Ganti_MPass = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.MasterServis = new System.Windows.Forms.GroupBox();
             this.ServisLamaD = new System.Windows.Forms.NumericUpDown();
             this.ServisLamaM = new System.Windows.Forms.NumericUpDown();
@@ -64,13 +71,36 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.Ganti_CMPass = new System.Windows.Forms.TextBox();
-            this.Ganti_MPass = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.servisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.TambahKaryawan = new System.Windows.Forms.GroupBox();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.KarID = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.Selesai = new System.Windows.Forms.Button();
+            this.KarJabatan = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.KarJoin = new System.Windows.Forms.DateTimePicker();
+            this.label15 = new System.Windows.Forms.Label();
+            this.KarDOB = new System.Windows.Forms.DateTimePicker();
+            this.KarSpecial = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.KarPassword = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.KarNama = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.MasterAlat = new System.Windows.Forms.GroupBox();
+            this.dataGridView3 = new System.Windows.Forms.DataGridView();
+            this.button7 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.label20 = new System.Windows.Forms.Label();
+            this.AlatNama = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.AlatID = new System.Windows.Forms.TextBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.AlatJuml = new System.Windows.Forms.NumericUpDown();
             this.menuStrip1.SuspendLayout();
             this.GantiKar.SuspendLayout();
             this.GantiMana.SuspendLayout();
@@ -78,6 +108,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.ServisLamaD)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ServisLamaM)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.TambahKaryawan.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            this.MasterAlat.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.AlatJuml)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -168,6 +203,13 @@
             this.tambahAlatToolStripMenuItem.Size = new System.Drawing.Size(204, 26);
             this.tambahAlatToolStripMenuItem.Text = "Tambah Alat";
             this.tambahAlatToolStripMenuItem.Click += new System.EventHandler(this.tambahAlatToolStripMenuItem_Click);
+            // 
+            // servisToolStripMenuItem
+            // 
+            this.servisToolStripMenuItem.Name = "servisToolStripMenuItem";
+            this.servisToolStripMenuItem.Size = new System.Drawing.Size(204, 26);
+            this.servisToolStripMenuItem.Text = "Servis";
+            this.servisToolStripMenuItem.Click += new System.EventHandler(this.servisToolStripMenuItem_Click);
             // 
             // GantiKar
             // 
@@ -270,6 +312,60 @@
             this.GantiMana.TabIndex = 2;
             this.GantiMana.TabStop = false;
             this.GantiMana.Text = "Ganti Password";
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Location = new System.Drawing.Point(329, 288);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(73, 21);
+            this.checkBox2.TabIndex = 13;
+            this.checkBox2.Text = "Yakin?";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(329, 334);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 12;
+            this.button2.Text = "Selesai";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // Ganti_CMPass
+            // 
+            this.Ganti_CMPass.Location = new System.Drawing.Point(236, 247);
+            this.Ganti_CMPass.Name = "Ganti_CMPass";
+            this.Ganti_CMPass.PasswordChar = '*';
+            this.Ganti_CMPass.Size = new System.Drawing.Size(265, 22);
+            this.Ganti_CMPass.TabIndex = 11;
+            // 
+            // Ganti_MPass
+            // 
+            this.Ganti_MPass.Location = new System.Drawing.Point(236, 180);
+            this.Ganti_MPass.Name = "Ganti_MPass";
+            this.Ganti_MPass.PasswordChar = '*';
+            this.Ganti_MPass.Size = new System.Drawing.Size(265, 22);
+            this.Ganti_MPass.TabIndex = 10;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(294, 216);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(139, 17);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "Konfirmasi Password";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(315, 145);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(103, 17);
+            this.label5.TabIndex = 8;
+            this.label5.Text = "Password Baru";
             // 
             // MasterServis
             // 
@@ -435,72 +531,298 @@
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
-            // checkBox2
+            // TambahKaryawan
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(329, 288);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(73, 21);
-            this.checkBox2.TabIndex = 13;
-            this.checkBox2.Text = "Yakin?";
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.TambahKaryawan.Controls.Add(this.button4);
+            this.TambahKaryawan.Controls.Add(this.button3);
+            this.TambahKaryawan.Controls.Add(this.KarID);
+            this.TambahKaryawan.Controls.Add(this.label13);
+            this.TambahKaryawan.Controls.Add(this.dataGridView2);
+            this.TambahKaryawan.Controls.Add(this.Selesai);
+            this.TambahKaryawan.Controls.Add(this.KarJabatan);
+            this.TambahKaryawan.Controls.Add(this.label17);
+            this.TambahKaryawan.Controls.Add(this.label16);
+            this.TambahKaryawan.Controls.Add(this.KarJoin);
+            this.TambahKaryawan.Controls.Add(this.label15);
+            this.TambahKaryawan.Controls.Add(this.KarDOB);
+            this.TambahKaryawan.Controls.Add(this.KarSpecial);
+            this.TambahKaryawan.Controls.Add(this.label14);
+            this.TambahKaryawan.Controls.Add(this.KarPassword);
+            this.TambahKaryawan.Controls.Add(this.label12);
+            this.TambahKaryawan.Controls.Add(this.KarNama);
+            this.TambahKaryawan.Controls.Add(this.label11);
+            this.TambahKaryawan.Location = new System.Drawing.Point(6, 31);
+            this.TambahKaryawan.Name = "TambahKaryawan";
+            this.TambahKaryawan.Size = new System.Drawing.Size(747, 504);
+            this.TambahKaryawan.TabIndex = 15;
+            this.TambahKaryawan.TabStop = false;
+            this.TambahKaryawan.Text = "Tambah Karyawan";
             // 
-            // button2
+            // button4
             // 
-            this.button2.Location = new System.Drawing.Point(329, 334);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 12;
-            this.button2.Text = "Selesai";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.button4.Location = new System.Drawing.Point(89, 462);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 19;
+            this.button4.Text = "Delete";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
-            // Ganti_CMPass
+            // button3
             // 
-            this.Ganti_CMPass.Location = new System.Drawing.Point(236, 247);
-            this.Ganti_CMPass.Name = "Ganti_CMPass";
-            this.Ganti_CMPass.PasswordChar = '*';
-            this.Ganti_CMPass.Size = new System.Drawing.Size(265, 22);
-            this.Ganti_CMPass.TabIndex = 11;
+            this.button3.Location = new System.Drawing.Point(90, 436);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 18;
+            this.button3.Text = "Update";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // Ganti_MPass
+            // KarID
             // 
-            this.Ganti_MPass.Location = new System.Drawing.Point(236, 180);
-            this.Ganti_MPass.Name = "Ganti_MPass";
-            this.Ganti_MPass.PasswordChar = '*';
-            this.Ganti_MPass.Size = new System.Drawing.Size(265, 22);
-            this.Ganti_MPass.TabIndex = 10;
+            this.KarID.Location = new System.Drawing.Point(35, 66);
+            this.KarID.Name = "KarID";
+            this.KarID.ReadOnly = true;
+            this.KarID.Size = new System.Drawing.Size(182, 22);
+            this.KarID.TabIndex = 17;
             // 
-            // label4
+            // label13
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(294, 216);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(139, 17);
-            this.label4.TabIndex = 9;
-            this.label4.Text = "Konfirmasi Password";
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(73, 46);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(87, 17);
+            this.label13.TabIndex = 16;
+            this.label13.Text = "ID Karyawan";
             // 
-            // label5
+            // dataGridView2
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(315, 145);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(103, 17);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "Password Baru";
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Location = new System.Drawing.Point(276, 21);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.RowTemplate.Height = 24;
+            this.dataGridView2.Size = new System.Drawing.Size(454, 471);
+            this.dataGridView2.TabIndex = 15;
+            this.dataGridView2.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellClick);
             // 
-            // servisToolStripMenuItem
+            // Selesai
             // 
-            this.servisToolStripMenuItem.Name = "servisToolStripMenuItem";
-            this.servisToolStripMenuItem.Size = new System.Drawing.Size(204, 26);
-            this.servisToolStripMenuItem.Text = "Servis";
-            this.servisToolStripMenuItem.Click += new System.EventHandler(this.servisToolStripMenuItem_Click);
+            this.Selesai.Location = new System.Drawing.Point(89, 407);
+            this.Selesai.Name = "Selesai";
+            this.Selesai.Size = new System.Drawing.Size(75, 23);
+            this.Selesai.TabIndex = 14;
+            this.Selesai.Text = "Insert";
+            this.Selesai.UseVisualStyleBackColor = true;
+            this.Selesai.Click += new System.EventHandler(this.Selesai_Click);
+            // 
+            // KarJabatan
+            // 
+            this.KarJabatan.Location = new System.Drawing.Point(35, 350);
+            this.KarJabatan.Name = "KarJabatan";
+            this.KarJabatan.Size = new System.Drawing.Size(182, 22);
+            this.KarJabatan.TabIndex = 13;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(97, 328);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(59, 17);
+            this.label17.TabIndex = 12;
+            this.label17.Text = "Jabatan";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(83, 277);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(90, 17);
+            this.label16.TabIndex = 11;
+            this.label16.Text = "Tanggal Join";
+            // 
+            // KarJoin
+            // 
+            this.KarJoin.Location = new System.Drawing.Point(26, 303);
+            this.KarJoin.Name = "KarJoin";
+            this.KarJoin.Size = new System.Drawing.Size(200, 22);
+            this.KarJoin.TabIndex = 10;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(82, 181);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(96, 17);
+            this.label15.TabIndex = 9;
+            this.label15.Text = "Tanggal Lahir";
+            // 
+            // KarDOB
+            // 
+            this.KarDOB.Location = new System.Drawing.Point(26, 203);
+            this.KarDOB.Name = "KarDOB";
+            this.KarDOB.Size = new System.Drawing.Size(200, 22);
+            this.KarDOB.TabIndex = 8;
+            // 
+            // KarSpecial
+            // 
+            this.KarSpecial.Location = new System.Drawing.Point(35, 252);
+            this.KarSpecial.Name = "KarSpecial";
+            this.KarSpecial.Size = new System.Drawing.Size(182, 22);
+            this.KarSpecial.TabIndex = 7;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(94, 229);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(64, 17);
+            this.label14.TabIndex = 6;
+            this.label14.Text = "Spesialis";
+            // 
+            // KarPassword
+            // 
+            this.KarPassword.Location = new System.Drawing.Point(35, 156);
+            this.KarPassword.Name = "KarPassword";
+            this.KarPassword.Size = new System.Drawing.Size(182, 22);
+            this.KarPassword.TabIndex = 3;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(65, 136);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(135, 17);
+            this.label12.TabIndex = 2;
+            this.label12.Text = "Password Karyawan";
+            // 
+            // KarNama
+            // 
+            this.KarNama.Location = new System.Drawing.Point(35, 111);
+            this.KarNama.Name = "KarNama";
+            this.KarNama.Size = new System.Drawing.Size(182, 22);
+            this.KarNama.TabIndex = 1;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(73, 91);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(111, 17);
+            this.label11.TabIndex = 0;
+            this.label11.Text = "Nama Karyawan";
+            // 
+            // MasterAlat
+            // 
+            this.MasterAlat.Controls.Add(this.AlatJuml);
+            this.MasterAlat.Controls.Add(this.dataGridView3);
+            this.MasterAlat.Controls.Add(this.button7);
+            this.MasterAlat.Controls.Add(this.button6);
+            this.MasterAlat.Controls.Add(this.button5);
+            this.MasterAlat.Controls.Add(this.label20);
+            this.MasterAlat.Controls.Add(this.AlatNama);
+            this.MasterAlat.Controls.Add(this.label19);
+            this.MasterAlat.Controls.Add(this.AlatID);
+            this.MasterAlat.Controls.Add(this.label18);
+            this.MasterAlat.Location = new System.Drawing.Point(12, 26);
+            this.MasterAlat.Name = "MasterAlat";
+            this.MasterAlat.Size = new System.Drawing.Size(741, 525);
+            this.MasterAlat.TabIndex = 20;
+            this.MasterAlat.TabStop = false;
+            this.MasterAlat.Text = "Master Alat";
+            // 
+            // dataGridView3
+            // 
+            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView3.Location = new System.Drawing.Point(187, 45);
+            this.dataGridView3.Name = "dataGridView3";
+            this.dataGridView3.RowTemplate.Height = 24;
+            this.dataGridView3.Size = new System.Drawing.Size(537, 464);
+            this.dataGridView3.TabIndex = 9;
+            this.dataGridView3.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView3_CellClick);
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(24, 257);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(75, 23);
+            this.button7.TabIndex = 8;
+            this.button7.Text = "button7";
+            this.button7.UseVisualStyleBackColor = true;
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(24, 228);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(75, 23);
+            this.button6.TabIndex = 7;
+            this.button6.Text = "button6";
+            this.button6.UseVisualStyleBackColor = true;
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(24, 195);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(75, 23);
+            this.button5.TabIndex = 6;
+            this.button5.Text = "button5";
+            this.button5.UseVisualStyleBackColor = true;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(26, 130);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(81, 17);
+            this.label20.TabIndex = 4;
+            this.label20.Text = "Jumlah Alat";
+            // 
+            // AlatNama
+            // 
+            this.AlatNama.Location = new System.Drawing.Point(29, 105);
+            this.AlatNama.Name = "AlatNama";
+            this.AlatNama.Size = new System.Drawing.Size(100, 22);
+            this.AlatNama.TabIndex = 3;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(26, 85);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(73, 17);
+            this.label19.TabIndex = 2;
+            this.label19.Text = "Nama Alat";
+            // 
+            // AlatID
+            // 
+            this.AlatID.Location = new System.Drawing.Point(29, 60);
+            this.AlatID.Name = "AlatID";
+            this.AlatID.ReadOnly = true;
+            this.AlatID.Size = new System.Drawing.Size(100, 22);
+            this.AlatID.TabIndex = 1;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(26, 40);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(49, 17);
+            this.label18.TabIndex = 0;
+            this.label18.Text = "ID Alat";
+            // 
+            // AlatJuml
+            // 
+            this.AlatJuml.Location = new System.Drawing.Point(29, 151);
+            this.AlatJuml.Name = "AlatJuml";
+            this.AlatJuml.Size = new System.Drawing.Size(120, 22);
+            this.AlatJuml.TabIndex = 10;
             // 
             // Admin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(815, 594);
+            this.Controls.Add(this.MasterAlat);
+            this.Controls.Add(this.TambahKaryawan);
             this.Controls.Add(this.MasterServis);
             this.Controls.Add(this.GantiMana);
             this.Controls.Add(this.GantiKar);
@@ -519,6 +841,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.ServisLamaD)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ServisLamaM)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.TambahKaryawan.ResumeLayout(false);
+            this.TambahKaryawan.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            this.MasterAlat.ResumeLayout(false);
+            this.MasterAlat.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.AlatJuml)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -569,5 +898,35 @@
         private System.Windows.Forms.Button Servis_Ins;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ToolStripMenuItem servisToolStripMenuItem;
+        private System.Windows.Forms.GroupBox TambahKaryawan;
+        private System.Windows.Forms.TextBox KarSpecial;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TextBox KarPassword;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox KarNama;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Button Selesai;
+        private System.Windows.Forms.TextBox KarJabatan;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.DateTimePicker KarJoin;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.DateTimePicker KarDOB;
+        private System.Windows.Forms.TextBox KarID;
+        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.GroupBox MasterAlat;
+        private System.Windows.Forms.DataGridView dataGridView3;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.TextBox AlatNama;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.TextBox AlatID;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.NumericUpDown AlatJuml;
     }
 }
