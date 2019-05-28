@@ -103,22 +103,6 @@ end;
 /
 show err;
 
-create or replace trigger AutoIDCus
-before insert on customer
-for each row
-declare
-	temp varchar2(8);
-	angka number;
-begin
-	select substr(max(id_customer),5,3)+1 into temp from customer;
-	if (temp is null) then
-	temp:=1;
-	end if;
-	:new.id_customer := 'CUST'||lpad(temp,3,'0');
-end;
-/
-show err;
-
 create or replace trigger AutoIDAla
 before insert on alat
 for each row
@@ -152,13 +136,13 @@ end;
 show err;
 
 create or replace trigger AutoIDTrans
-before insert on h_trans
+before insert on h_transaksi
 for each row
 declare
 	temp varchar2(8);
 	angka number;
 begin
-	select substr(max(id_transaksi),6,3)+1 into temp from h_trans;
+	select substr(max(id_transaksi),6,3)+1 into temp from h_transaksi;
 	if (temp is null) then
 	temp:=1;
 	end if;
@@ -196,7 +180,7 @@ insert into alat values('','BOR',7,'B');
 insert into alat values('','PALU',10,'B');
 insert into alat values('','SOLDER',7,'B');
 
-insert into customer values('','Greg Gerard',1,'P'); 
+insert into customer values('CUST000','Non-Member',1,'B'); 
 --done
 insert into customer values('','Alex Situmorang',1,'B');
 insert into customer values('','Aris Liantono',1,'B');
@@ -232,21 +216,21 @@ insert into barang values('','Ban FDR',43000,47300,38700,100);
 insert into barang values('','Busi Motor',15000,16500,13500,100);
 insert into barang values('','Rantai Motor',60000,66000,54000,100);
 
-insert into h_transaksi values('TRANS001','CUST001',50000000,to_date('10-07-2017','DD-MM-YYYY')); 
+insert into h_transaksi values('','CUST001',50000000,to_date('10-07-2017','DD-MM-YYYY')); 
 --ganti semua hehe
-insert into h_transaksi values('TRANS002','CUST002',70000000,to_date('09-08-2016','DD-MM-YYYY'));
-insert into h_transaksi values('TRANS003','CUST003',20000000,to_date('09-08-2017','DD-MM-YYYY'));
-insert into h_transaksi values('TRANS004','CUST004',55000000,to_date('09-08-2012','DD-MM-YYYY'));
-insert into h_transaksi values('TRANS005','CUST005',40000000,to_date('09-08-2016','DD-MM-YYYY'));
-insert into h_transaksi values('TRANS006','CUST006',5500000,to_date('01-07-2008','DD-MM-YYYY'));
-insert into h_transaksi values('TRANS007','CUST007',8000000,to_date('01-09-2015','DD-MM-YYYY'));
-insert into h_transaksi values('TRANS008','CUST008',50000000,to_date('01-01-2018','DD-MM-YYYY'));
-insert into h_transaksi values('TRANS009','CUST009',15000000,to_date('28-07-2015','DD-MM-YYYY'));
-insert into h_transaksi values('TRANS010','CUST010',90000000,to_date('06-01-2018','DD-MM-YYYY'));
-insert into h_transaksi values('TRANS011','CUST011',15000000,to_date('12-06-2016','DD-MM-YYYY'));
-insert into h_transaksi values('TRANS012','CUST012',40000000,to_date('27-08-2012','DD-MM-YYYY'));
-insert into h_transaksi values('TRANS013','CUST013',20000000,to_date('01-07-2014','DD-MM-YYYY'));
-insert into h_transaksi values('TRANS014','CUST014',150000000,to_date('09-04-2017','DD-MM-YYYY'));
+insert into h_transaksi values('','CUST002',70000000,to_date('09-08-2016','DD-MM-YYYY'));
+insert into h_transaksi values('','CUST003',20000000,to_date('09-08-2017','DD-MM-YYYY'));
+insert into h_transaksi values('','CUST004',55000000,to_date('09-08-2012','DD-MM-YYYY'));
+insert into h_transaksi values('','CUST005',40000000,to_date('09-08-2016','DD-MM-YYYY'));
+insert into h_transaksi values('','CUST006',5500000,to_date('01-07-2008','DD-MM-YYYY'));
+insert into h_transaksi values('','CUST007',8000000,to_date('01-09-2015','DD-MM-YYYY'));
+insert into h_transaksi values('','CUST008',50000000,to_date('01-01-2018','DD-MM-YYYY'));
+insert into h_transaksi values('','CUST009',15000000,to_date('28-07-2015','DD-MM-YYYY'));
+insert into h_transaksi values('','CUST010',90000000,to_date('06-01-2018','DD-MM-YYYY'));
+insert into h_transaksi values('','CUST011',15000000,to_date('12-06-2016','DD-MM-YYYY'));
+insert into h_transaksi values('','CUST012',40000000,to_date('27-08-2012','DD-MM-YYYY'));
+insert into h_transaksi values('','CUST013',20000000,to_date('01-07-2014','DD-MM-YYYY'));
+insert into h_transaksi values('','CUST014',150000000,to_date('09-04-2017','DD-MM-YYYY'));
 
 insert into d_transaksi values('TRANS001','SER001',1,50000000);
 insert into d_transaksi values('TRANS002','SER001',1,70000000);
@@ -265,3 +249,19 @@ insert into d_transaksi values('TRANS014','SER001',1,2500000);
 
 commit;
 
+
+create or replace trigger AutoIDCus
+before insert on customer
+for each row
+declare
+	temp varchar2(8);
+	angka number;
+begin
+	select substr(max(id_customer),5,3)+1 into temp from customer;
+	if (temp is null) then
+	temp := 1;
+	end if;
+	:new.id_customer := 'CUST'||lpad(temp,3,'0');
+end;
+/
+show err;

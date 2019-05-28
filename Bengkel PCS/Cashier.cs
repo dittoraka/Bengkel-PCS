@@ -30,6 +30,7 @@ namespace Bengkel_PCS
         private void Cashier_Load(object sender, EventArgs e)
         {
             loadBarang("harga_customer");
+            comboBox3.Enabled = true;
         }
 
         void loadBarang(string a) {
@@ -46,6 +47,14 @@ namespace Bengkel_PCS
 
         private void button1_Click(object sender, EventArgs e)
         {
+            string plg = "";
+            if (checkBox1.Checked.ToString() == "True")
+            {
+                plg = comboBox3.SelectedValue.ToString();
+            }
+            else {
+                plg = "CUST000";
+            }
             string id = "";
             try
             {
@@ -53,17 +62,17 @@ namespace Bengkel_PCS
                 OracleCommand cmd = new OracleCommand("select count(*) from h_transaksi", fm.conn);
                 string jml = cmd.ExecuteScalar().ToString();
 
-                id = "TR" + jml.PadLeft(6, '0');
+                id = "TRANS" + jml.PadLeft(3, '0');
                 string date = DateTime.Now.ToString("yyyy-MM-dd");
                 int hg = total;
-                cmd = new OracleCommand("insert into h_transaksi values('" + id + "','" + hg + "',to_date('" + date + "','yyyy-MM-dd'))", fm.conn);
+                cmd = new OracleCommand("insert into h_transaksi values('" + id + "','"+plg+"','" + hg + "',to_date('" + date + "','yyyy-MM-dd'))", fm.conn);
                 cmd.ExecuteNonQuery();
                 fm.conn.Close();
-                //MessageBox.Show("Sukses Memasukkan Data transaksi.");
+                MessageBox.Show("Sukses Memasukkan Data transaksi.");
             }
             catch (Exception)
             {
-                //MessageBox.Show("Gagal Memasukkan Data transaksi.");
+                MessageBox.Show("Gagal Memasukkan Data transaksi.");
             }
 
             try
@@ -198,6 +207,22 @@ namespace Bengkel_PCS
             else {
                 loadBarang("harga_customer");
             }
+        }
+        bool check = false;
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked.ToString() == "True") { check = true; comboBox3.Enabled = true;
+                fm.conn.Open();
+                OracleDataAdapter daa = new OracleDataAdapter("SELECT id_customer,nama_customer FROM customer ORDER BY 1", fm.conn);
+                DataSet dta = new DataSet();
+                daa.Fill(dta);
+
+                comboBox3.DataSource = dta.Tables[0];
+                comboBox3.DisplayMember = "nama_customer";
+                comboBox3.ValueMember = "id_customer";
+                fm.conn.Close();
+            }
+            else { check = false; comboBox3.Enabled = false; } 
         }
     }
 }
