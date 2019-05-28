@@ -217,30 +217,17 @@ namespace Bengkel_PCS
 
         private void AlatIns_Click(object sender, EventArgs e)
         {
-            fm.conn.Open();
-            OracleCommand cmd = new OracleCommand("insert into alat values('','" + AlatNama.Text + "','" + AlatJuml.Value + "','B')", fm.conn);
-            cmd.ExecuteNonQuery();
-            fm.conn.Close();
-            tampil();
-            MessageBox.Show("Tambah Alat Sukses");
+            
         }
 
         private void AlatUpd_Click(object sender, EventArgs e)
         {
-            fm.conn.Open();
-            OracleCommand cmd = new OracleCommand("update alat set nama_alat = '" + AlatNama.Text + "', banyak_alat ='" + AlatJuml.Value + "' where id_alat = '" + AlatID.Text + "'", fm.conn);
-            cmd.ExecuteNonQuery();
-            fm.conn.Close();
-            tampil();
+            
         }
 
         private void AlatDel_Click(object sender, EventArgs e)
         {
-            fm.conn.Open();
-            OracleCommand cmd = new OracleCommand("delete from alat where id_alat = '" + AlatID.Text + "'", fm.conn);
-            cmd.ExecuteNonQuery();
-            fm.conn.Close();
-            tampil();
+            
         }
 
         private void dataGridView3_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -249,6 +236,34 @@ namespace Bengkel_PCS
             AlatID.Text = dataGridView3.Rows[e.RowIndex].Cells[0].Value.ToString();
             AlatNama.Text = dataGridView3.Rows[e.RowIndex].Cells[1].Value.ToString();
             AlatJuml.Text = dataGridView3.Rows[e.RowIndex].Cells[2].Value.ToString();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            fm.conn.Open();
+            OracleCommand cmd = new OracleCommand("insert into alat values('','" + AlatNama.Text + "','" + AlatJuml.Value + "','B')", fm.conn);
+            cmd.ExecuteNonQuery();
+            fm.conn.Close();
+            tampil();
+            MessageBox.Show("Tambah Alat Sukses");
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            fm.conn.Open();
+            OracleCommand cmd = new OracleCommand("update alat set nama_alat = '" + AlatNama.Text + "', banyak_alat ='" + AlatJuml.Value + "' where id_alat = '" + AlatID.Text + "'", fm.conn);
+            cmd.ExecuteNonQuery();
+            fm.conn.Close();
+            tampil();
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            fm.conn.Open();
+            OracleCommand cmd = new OracleCommand("delete from alat where id_alat = '" + AlatID.Text + "'", fm.conn);
+            cmd.ExecuteNonQuery();
+            fm.conn.Close();
+            tampil();
         }
     }
 }
