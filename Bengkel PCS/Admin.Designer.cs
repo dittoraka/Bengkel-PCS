@@ -91,6 +91,7 @@
             this.KarNama = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.MasterAlat = new System.Windows.Forms.GroupBox();
+            this.AlatJuml = new System.Windows.Forms.NumericUpDown();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
             this.button7 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
@@ -100,7 +101,6 @@
             this.label19 = new System.Windows.Forms.Label();
             this.AlatID = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
-            this.AlatJuml = new System.Windows.Forms.NumericUpDown();
             this.menuStrip1.SuspendLayout();
             this.GantiKar.SuspendLayout();
             this.GantiMana.SuspendLayout();
@@ -111,8 +111,8 @@
             this.TambahKaryawan.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.MasterAlat.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AlatJuml)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -177,6 +177,7 @@
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
             this.toolStripMenuItem2.Size = new System.Drawing.Size(182, 26);
             this.toolStripMenuItem2.Text = "Laba Tahunan";
+            this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
             // 
             // toolStripMenuItem3
             // 
@@ -189,6 +190,7 @@
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
             this.toolStripMenuItem4.Size = new System.Drawing.Size(182, 26);
             this.toolStripMenuItem4.Text = "Check Nota";
+            this.toolStripMenuItem4.Click += new System.EventHandler(this.toolStripMenuItem4_Click);
             // 
             // tambahKaryawanToolStripMenuItem
             // 
@@ -730,6 +732,13 @@
             this.MasterAlat.TabStop = false;
             this.MasterAlat.Text = "Master Alat";
             // 
+            // AlatJuml
+            // 
+            this.AlatJuml.Location = new System.Drawing.Point(29, 151);
+            this.AlatJuml.Name = "AlatJuml";
+            this.AlatJuml.Size = new System.Drawing.Size(120, 22);
+            this.AlatJuml.TabIndex = 10;
+            // 
             // dataGridView3
             // 
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -812,13 +821,6 @@
             this.label18.TabIndex = 0;
             this.label18.Text = "ID Alat";
             // 
-            // AlatJuml
-            // 
-            this.AlatJuml.Location = new System.Drawing.Point(29, 151);
-            this.AlatJuml.Name = "AlatJuml";
-            this.AlatJuml.Size = new System.Drawing.Size(120, 22);
-            this.AlatJuml.TabIndex = 10;
-            // 
             // Admin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -849,8 +851,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.MasterAlat.ResumeLayout(false);
             this.MasterAlat.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.AlatJuml)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

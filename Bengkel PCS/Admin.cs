@@ -265,5 +265,16 @@ namespace Bengkel_PCS
             fm.conn.Close();
             tampil2();
         }
+
+        private void toolStripMenuItem4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            Penjualan asd = new Penjualan();
+            asd.Show();
+        }
     }
 }

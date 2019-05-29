@@ -18,6 +18,8 @@ namespace Bengkel_PCS
         public List<Pembelian> blist = new List<Pembelian>();
         List<string> nbarang = new List<string>();
         List<string> stok = new List<string>();
+        public static string htrans = "";
+        public static string idcus = "";
         public Cashier()
         {
             InitializeComponent();
@@ -81,7 +83,7 @@ namespace Bengkel_PCS
                 {
                     string a = "999";
                     fm.conn.Open();
-                    OracleCommand cmd = new OracleCommand("insert into d_transaksi values('" + id + "','" + s.Idbarang + "','" + s.Jumlah + "','" + (s.Harga - (s.Hbeli * s.Jumlah)) + "')", fm.conn);
+                    OracleCommand cmd = new OracleCommand("insert into d_transaksi values('" + id + "','" + s.Idbarang + "','" + s.Jumlah + "','" + Int32.Parse(comboBox1.SelectedValue.ToString()) * Int32.Parse(textBox3.Text) + "')", fm.conn);
                     cmd.ExecuteNonQuery();
                     fm.conn.Close();
 
@@ -101,6 +103,13 @@ namespace Bengkel_PCS
                 blist.Clear();
                 dataGridView1.Rows.Clear();
                 dataGridView1.Refresh();
+                htrans = id;
+                idcus = plg;
+                label1.Text = "Rp. 0";
+                total = 0;
+                notaa not = new notaa();
+                not.Show();
+                
             }
             catch (Exception)
             {
@@ -189,7 +198,7 @@ namespace Bengkel_PCS
         private void button5_Click(object sender, EventArgs e)
         {
             total -= Int32.Parse(dataGridView1.Rows[idx].Cells[6].Value.ToString());
-            label7.Text = "Rp. " + total.ToString();
+            //label7.Text = "Rp. " + total.ToString();
             dataGridView1.Rows.RemoveAt(idx);
         }
 
